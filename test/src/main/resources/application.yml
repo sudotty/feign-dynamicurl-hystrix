@@ -1,0 +1,26 @@
+server:
+  port: 9999
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 5000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 500
+      circuitBreaker:
+        sleepWindowInMilliseconds: 3s #短路多久以后开始尝试是否恢复，默认5s
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 9000
+        readTimeout: 1000
